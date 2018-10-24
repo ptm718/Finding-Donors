@@ -11931,7 +11931,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Total number of records</span>
@@ -11944,7 +11944,7 @@ div#notebook {
 <span class="n">n_at_most_50k</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">income</span><span class="o">==</span><span class="s1">&#39;&lt;=50K&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 
 <span class="c1"># TODO: Percentage of individuals whose income is more than $50,000</span>
-<span class="n">greater_percent</span> <span class="o">=</span> <span class="n">n_greater_50k</span><span class="o">/</span><span class="n">n_records</span>
+<span class="n">greater_percent</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_greater_50k</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="n">n_records</span>
 
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total number of records: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_records</span><span class="p">))</span>
@@ -11970,7 +11970,7 @@ div#notebook {
 <pre>Total number of records: 45222
 Individuals making more than $50,000: 11208
 Individuals making at most $50,000: 34014
-Percentage of individuals making more than $50,000: 0.2478439697492371%
+Percentage of individuals making more than $50,000: 24.78439697492371%
 </pre>
 </div>
 </div>
@@ -12728,7 +12728,7 @@ In the code block below, you will need to implement the following:</p>
 
 
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">clf_B</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
@@ -12880,9 +12880,9 @@ AdaBoost is the best of the three models given the model's fast training and pre
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> <br>
-AdaBoost (named from ADAptive BOOSTing) is a model which uses many weak classifiers as an ensemble to create a strong classifier.  The model uses numerous one level decision trees in concert to make more accurate predictions than a decision tree could on its own.  The weak classifiers are simple yes or no classifiers, which as long as they are better than random, will be useful.  It utilizes feedback from what the weak classifers get right and wrong to iterate and improve.  To improve, it assigns higher weight to predictions it got wrong, so they will have more of an impact on the next model.<br>
-All the weak classifiers are then used, with their predictions weighted by how accurate they were, to create a final prediction.  By using all the weak classifiers and weighting them appropriately, the final prediction can be more accurate than any of the individual weak predictors.</p>
+<p><strong>Answer:</strong><br>
+AdaBoost (named from ADAptive BOOSTing) is a model which uses many weak classifiers as an ensemble to create a strong classifier.  The weak classifiers are any machine learning algorithm that gives a better result than random guessing.  In this case, it is a one level decistion tree, although any machine learning routine could be used.  A one level decision tree is a simple yes or no question that results in output.  For example, a decision tree on age predicting earnings may ask "Is age &gt;=45?", if being above or below age 45 appears to be the most predictive cutoff for earning &gt;\$50k. &lt;br&gt;
+The algorithm will train a specified number of these trees, increasing the importance of incorrect data points to continually improve the model, and weight their input to compute a final answer.  These will perform especially well if they are good in a specific area, as the algorithm will be able to determine that, and whenever a weak learner is very confident about something it is good at predicting, it will be weighted heavily.  For example, if almost all people above age 45 earned more than \$50k, the weak learner which gives that information will be heavily weighted.  Other weak learners will be strong/confident in other areas, and all this will combine to the most accurate final prediction the model can make.  This can be thought of as the weak learners solving subsets of the problem, then peeling them away so future iterations can solve the others.<br></p>
 
 </div>
 </div>
@@ -13030,12 +13030,12 @@ Final F-score on the testing data: 0.7355
 <tr>
 <td style="text-align:center">Accuracy Score</td>
 <td style="text-align:center">0.8576</td>
-<td style="text-align:center">0.8677</td>
+<td style="text-align:center">0.8640</td>
 </tr>
 <tr>
 <td style="text-align:center">F-score</td>
 <td style="text-align:center">0.7246</td>
-<td style="text-align:center">0.7452</td>
+<td style="text-align:center">0.7355</td>
 </tr>
 </tbody>
 </table>
